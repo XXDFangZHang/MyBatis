@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--namespace务必和接口的全类名一致 -->
+<mapper namespace="com.cjh.dao.UserMapper">
+    <!--id务必和接口中的方法名称对应
+   如果参数类型是一个对象，那么sql语句中#｛对象的属性名｝
+    -->
+    <insert id="addUser" parameterType="com.cjh.pojo.User">
+        insert into user(userName,password)
+        values(#{userName},#{password})
+    </insert>
+    <update id="updateUser" parameterType="com.cjh.pojo.User">
+        UPDATE USER SET userName=#{userName},password=#{password} where id=#{id}
+    </update>
+    <delete id="deleteUser" parameterType="com.cjh.pojo.User">
+         delete from user where id=#{xxx}
+    </delete>
+    <select id="selectUserById" resultType="com.cjh.pojo.User">
+        SELECT id,userName,PASSWORD FROM USER WHERE id=#{xxx}
+    </select>
+    <select id="selectAllUsers" resultType="com.cjh.pojo.User">
+        SELECT id,userName,PASSWORD FROM USER
+    </select>
+
+</mapper>
