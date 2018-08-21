@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/MyBatis.iml" filepath="$PROJECT_DIR$/MyBatis.iml" />
       <module fileurl="file://$PROJECT_DIR$/MyBatisBase/MyBatisBase.iml" filepath="$PROJECT_DIR$/MyBatisBase/MyBatisBase.iml" />
+      <module fileurl="file://$PROJECT_DIR$/MyBatisDynamicSql/MyBatisDynamicSql.iml" filepath="$PROJECT_DIR$/MyBatisDynamicSql/MyBatisDynamicSql.iml" />
     </modules>
   </component>
 </project>

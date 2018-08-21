@@ -10,6 +10,7 @@
   <version>1.0-SNAPSHOT</version>
   <modules>
     <module>MyBatisBase</module>
+      <module>MyBatisDynamicSql</module>
   </modules>
 
   <name>MyBatis</name>
@@ -85,5 +86,15 @@
       <version>5.1.6</version>
     </dependency>
   </dependencies>
+  <build>
+    <resources>
+      <resource>
+        <directory>src/main/java</directory>
+        <includes>
+          <include>**/*.xml</include>
+        </includes>
+      </resource>
+    </resources>
+  </build>
 
 </project>

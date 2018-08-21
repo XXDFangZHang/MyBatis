@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--namespace务必和接口的全类名一致 -->
+<mapper namespace="com.cjh.dao.UserMapper">
+    <!--id务必和接口中的方法名称对应
+   如果参数类型是一个对象，那么sql语句中#｛对象的属性名｝
+    -->
+    <resultMap id="userMap" type="com.cjh.pojo.User">
+        <id property="id" column="id"></id>
+        <result property="userName" column="name"></result>
+        <result property="password" column="password"></result>
+    </resultMap>
+
+    <insert id="addUser" parameterType="com.cjh.pojo.User">
+        <selectKey keyProperty="id" resultType="int" order="AFTER">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        insert into user(name,password)
+        values(#{userName},#{password})
+    </insert>
+
+    <select id="findUserByCondition" parameterType="com.cjh.pojo.User" resultMap="userMap">
+        SELECT id,name,password FROM user
+        <where>
+            <if test="userName!=null and userName!=''">
+                and name like concat('%',#{userName},'%')
+            </if>
+            <if test="password!=null and password!=''">
+                and password=#{password}
+            </if>
+        </where>
+    </select>
+
+    <update id="updateUserByCondition" parameterType="com.cjh.pojo.User">
+        UPDATE USER
+        <trim prefix="set" suffixOverrides=",">
+            <if test="userName!=null and userName!=''">
+                name=#{userName},
+            </if>
+            <if test="password!=null and password!=''">
+                password=#{password},
+            </if>
+        </trim>
+        <where>
+            id=#{id}
+        </where>
+    </update>
+
+    <select id="chooseCondition" parameterType="com.cjh.pojo.User" resultMap="userMap">
+        SELECT id,name,password FROM user
+        <where>
+            <choose>
+                <when test="userName!=null and userName!=''">
+                    and name LIKE  concat('%',#{userName},'%')
+                </when>
+                <when test="password!=null and password!=''">
+                    and password=#{password}
+                </when>
+                <otherwise>
+                    AND id=#{id}
+                </otherwise>
+            </choose>
+        </where>
+    </select>
+
+</mapper>

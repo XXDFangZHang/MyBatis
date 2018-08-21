@@ -3,25 +3,40 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!--namespace务必和接口的全类名一致 -->
-<mapper namespace="com.cjh.dao.UserMapper">
+<mapper namespace="UserMapper">
     <!--id务必和接口中的方法名称对应
    如果参数类型是一个对象，那么sql语句中#｛对象的属性名｝
     -->
+    <select id="Login" resultType="INTEGER">
+        SELECT count(*) FROM user where `name`=#{MyName} and `password`=#{MyPwd}
+    </select>
     <insert id="addUser" parameterType="com.cjh.pojo.User">
-        insert into user(userName,password)
+        <selectKey keyProperty="id" resultType="int" order="AFTER">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        insert into user(name,password)
         values(#{userName},#{password})
     </insert>
+
     <update id="updateUser" parameterType="com.cjh.pojo.User">
-        UPDATE USER SET userName=#{userName},password=#{password} where id=#{id}
+        UPDATE USER SET userName=#{name},password=#{password} where id=#{id}
     </update>
+
     <delete id="deleteUser" parameterType="com.cjh.pojo.User">
          delete from user where id=#{xxx}
     </delete>
-    <select id="selectUserById" resultType="com.cjh.pojo.User">
-        SELECT id,userName,PASSWORD FROM USER WHERE id=#{xxx}
+
+    <select id="selectUserById" resultMap="userMap">
+        SELECT id,name,PASSWORD FROM USER WHERE id=#{xxx}
     </select>
-    <select id="selectAllUsers" resultType="com.cjh.pojo.User">
-        SELECT id,userName,PASSWORD FROM USER
+
+    <resultMap id="userMap" type="com.cjh.pojo.User">
+        <id property="id" column="id"></id>
+        <result property="userName" column="name"></result>
+        <result property="password" column="password"></result>
+    </resultMap>
+    <select id="selectAllUsers" resultMap="userMap">
+        SELECT id,name,PASSWORD FROM USER
     </select>
 
 </mapper>

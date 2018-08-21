@@ -7,11 +7,13 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="MyBatisBase" />
+        <module name="MyBatisDynamicSql" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="MyBatis" target="1.7" />
       <module name="MyBatisBase" target="1.7" />
+      <module name="MyBatisDynamicSql" target="1.7" />
     </bytecodeTargetLevel>
   </component>
 </project>
