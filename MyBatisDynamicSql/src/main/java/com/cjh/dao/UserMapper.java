@@ -24,4 +24,18 @@ public interface UserMapper {
      * 动态查询 choose  when
      * */
     List<User> chooseCondition(User user);
+    /**
+     * 动态查询 遍历数组
+     * */
+    List<User> selectByArray(int[] num);
+    /**
+     * 动态查询 遍历数组ww
+     * */
+    List<User> selectByList(List<Integer> list);
+    /**
+     * 新增许多用户
+     */
+    int insertManyUser(List<User> list);
+
+
 }

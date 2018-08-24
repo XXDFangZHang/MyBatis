@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--namespace务必和接口的全类名一致 -->
+<mapper namespace="com.cjh.dao.CountryMapper">
+    <!--id务必和接口中的方法名称对应
+   如果参数类型是一个对象，那么sql语句中#｛对象的属性名｝
+    -->
+    <resultMap id="myCountryMap" type="Country">
+        <id property="cId" column="cid"></id>
+        <result property="cName" column="cname"></result>
+        <collection property="provincials" ofType="Provincial">
+            <id property="pId" column="pid"></id>
+            <result property="pName" column="pname"></result>
+        </collection>
+    </resultMap>
+    <select id="selectProvincial" resultMap="myCountryMap">
+        SELECT cid,cname,pid,pname FROM country c,provincial p
+        <where>
+            c.`cid`=p.`countryid` AND c.`cid`=#{xxx}
+        </where>
+
+    </select>
+
+
+
+</mapper>

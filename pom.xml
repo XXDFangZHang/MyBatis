@@ -11,6 +11,7 @@
   <modules>
     <module>MyBatisBase</module>
       <module>MyBatisDynamicSql</module>
+      <module>RelationShip</module>
   </modules>
 
   <name>MyBatis</name>

@@ -2,11 +2,11 @@ package com.cjh;
 
 import com.cjh.dao.UserMapper;
 import com.cjh.pojo.User;
-import com.cjh.util.SessionFactoryUtil;
 import org.apache.ibatis.session.SqlSession;
 import org.junit.After;
 import org.junit.Before;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -80,5 +80,45 @@ public class Test {
         List<User> chooseCondition = mapper.chooseCondition(user);
         System.out.println(chooseCondition);
 
+    }
+    /**
+     * 动态查询 遍历数组
+     */
+    @org.junit.Test
+    public   void  selectByArray(){
+        int[] num={20,21,22};
+        List<User> users = mapper.selectByArray(num);
+        System.out.println(users);
+    }
+    /**
+     * 动态查询 遍历集合
+     */
+    @org.junit.Test
+    public   void  selectByList(){
+        List<Integer> list=new ArrayList<>();
+        list.add(20);
+        List<User> users = mapper.selectByList(list);
+        System.out.println(users);
+    }
+    /**
+     * 新增许多用户
+     */
+    @org.junit.Test
+    public   void  insertManyUser(){
+        List<User> list=new ArrayList<>();
+        User user1=new User();
+        user1.setUserName("aaa");
+        user1.setPassword("1");
+        User user2=new User();
+        user2.setUserName("bbb");
+        user2.setPassword("1");
+        User user3=new User();
+        user3.setUserName("ccc");
+        user3.setPassword("1");
+        list.add(user1);
+        list.add(user2);
+        list.add(user3);
+        int num = mapper.insertManyUser(list);
+        System.out.println(num);
     }
 }

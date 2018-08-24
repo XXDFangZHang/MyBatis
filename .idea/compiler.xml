@@ -8,12 +8,14 @@
         <outputRelativeToContentRoot value="true" />
         <module name="MyBatisBase" />
         <module name="MyBatisDynamicSql" />
+        <module name="RelationShip" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="MyBatis" target="1.7" />
       <module name="MyBatisBase" target="1.7" />
       <module name="MyBatisDynamicSql" target="1.7" />
+      <module name="RelationShip" target="1.7" />
     </bytecodeTargetLevel>
   </component>
 </project>

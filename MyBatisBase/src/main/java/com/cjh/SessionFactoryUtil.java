@@ -1,4 +1,4 @@
-package com.cjh.util;
+package com.cjh;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;

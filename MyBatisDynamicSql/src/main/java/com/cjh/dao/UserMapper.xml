@@ -64,5 +64,38 @@
             </choose>
         </where>
     </select>
+    
+    <select id="selectByArray" resultMap="userMap">
+         SELECT id,name,password FROM user
+         <where>
+             <if test="array.length>0">
+                 id in 
+                 <foreach collection="array" open="(" close=")" separator="," item="id">
+                     #{id}
+                 </foreach>
+             </if>
+         </where>
+    </select>
+
+    <sql id="selectAllColunm">  SELECT id,name,password FROM user</sql>
+
+    <select id="selectByList" resultMap="userMap">
+        <include refid="selectAllColunm"></include>
+        <where>
+            <if test="list.size>0">
+                id in
+                <foreach collection="list" open="(" close=")" separator="," item="id">
+                    #{id}
+                </foreach>
+            </if>
+        </where>
+    </select>
+    
+    <insert id="insertManyUser">
+        insert into user(name,password) values
+        <foreach collection="list" item="user" separator=",">
+            (#{user.userName},#{user.password})
+        </foreach>
+    </insert>
 
 </mapper>

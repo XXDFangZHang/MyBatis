@@ -2,7 +2,6 @@ package com.cjh;
 
 import com.cjh.dao.UserMapper;
 import com.cjh.pojo.User;
-import com.cjh.util.SessionFactoryUtil;
 import org.apache.ibatis.session.SqlSession;
 
 import org.junit.Test;
